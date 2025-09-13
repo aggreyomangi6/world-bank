@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NGO Startup Support Program</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background: #f4f7fb;
+    color: #333;
+  }
+  header {
+    background: #004080;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  .container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  h2 {
+    color: #004080;
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    margin: 10px 0 6px;
+  }
+  input[type="tel"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  button {
+    margin-top: 15px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #004080;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #0059b3;
+  }
+  /* Caution */
+  .caution {
+    background: #ffdddd;
+    border-left: 6px solid #d60000;
+    padding: 15px;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #b30000;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  .note {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #004080;
+  }
+  /* Countdown */
+  .countdown {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    font-weight: bold;
+    color: #ff6600;
+  }
+  /* Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+  .modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 92%;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .modal h3 {
+    margin-top: 0;
+    color: #004080;
+  }
+  .modal p {
+    margin: 10px 0;
+  }
+  .modal button {
+    margin-top: 12px;
+    width: 100%;
+  }
+  /* Testimonials */
+  .testimonials {
+    margin: 40px auto 20px;
+    max-width: 800px;
+    padding: 20px;
+    background: #eef3fa;
+    border-radius: 8px;
+  }
+  .testimonials h2 {
+    text-align: center;
+  }
+  .testimonial {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 6px;
+    border-left: 4px solid #004080;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .testimonial img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #004080;
+  }
+  .testimonial strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #004080;
+  }
+  footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    background: #004080;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>INTERNATIONAL MONETARY FUND </h1>
+  <p>SUPPORTING THE NEXT GENERATION OF BUSINESS OWNERS</p>
+</header>
+
+<div class="container">
+  <div class="caution">
+    ⚠️ Important: Registration is only done ONCE. Enter correct details or risk disqualification!
+  </div>
+
+  <h2>Register for Support</h2>
+  <p class="note">Upon registration, you will receive a confirmation email within 48 hours. Failure to confirm email will lead to disqualification.</p>
+  <p class="countdown">⏳ Registration extended! Expires in: <span id="timer"></span></p>
+
+  <form id="regForm">
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" required placeholder="e.g. 0712345678" maxlength="10">
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" required placeholder="e.g. you@example.com">
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h3>Application Fee</h3>
+    <p>Please copy this number and pay the application fee of <strong>KSh 500</strong> via Pochi La Biashara:</p>
+    <p style="font-size:1.2rem; font-weight:bold; color:#004080;" id="payNumber">0798765432</p>
+    <button id="copyBtn">Copy Number</button>
+    <button id="closeBtn" style="background:#888; margin-top:8px;">Close</button>
+  </div>
+</div>
+
+<!-- Testimonials -->
+<div class="testimonials">
+  <h2>What Beneficiaries Say</h2>
+  <div class="testimonial">
+    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Mary">
+    <div>
+      <strong>Mary A.</strong>
+      <p>“This NGO helped me start my poultry business. I received funding quickly and I am forever grateful!”</p>
+    </div>
+  </div>
+  <div class="testimonial">
+    <img src="https://randomuser.me/api/portraits/men/30.jpg" alt="John">
+    <div>
+      <strong>John K.</strong>
+      <p>“Legit platform. I paid the small application fee and within weeks, I got support to start my shop.”</p>
+    </div>
+  </div>
+  <div class="testimonial">
+    <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Sarah">
+    <div>
+      <strong>Sarah N.</strong>
+      <p>“Thanks for believing in us. I now run a successful salon. God bless the team!”</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 NGO Startup Support Program. All rights reserved.
+</footer>
+
+<script>
+  const regForm = document.getElementById("regForm");
+  const modalBackdrop = document.getElementById("modalBackdrop");
+  const copyBtn = document.getElementById("copyBtn");
+  const closeBtn = document.getElementById("closeBtn");
+  const payNumber = document.getElementById("payNumber").textContent;
+
+  // Registration handler
+  regForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    if(!/^[0-9]{10}$/.test(phone)){
+      alert("Please enter a valid 10-digit phone number.");
+      return;
+    }
+    if(!email.includes("@")){
+      alert("Please enter a valid email address.");
+      return;
+    }
+    // Show modal
+    modalBackdrop.style.display = "flex";
+  });
+
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(payNumber);
+      alert("Number copied. Please pay KSh 500 to " + payNumber);
+    } catch (e) {
+      alert("Copy failed. Please copy manually: " + payNumber);
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modalBackdrop.style.display = "none";
+  });
+
+  // Countdown (5 days from load)
+  const timerEl = document.getElementById("timer");
+  const deadline = new Date().getTime() + 5*24*60*60*1000;
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const t = deadline - now;
+    if (t <= 0) {
+      timerEl.textContent = "Expired";
+      return;
+    }
+    const days = Math.floor(t/(1000*60*60*24));
+    const hours = Math.floor((t%(1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((t%(1000*60*60))/(1000*60));
+    const seconds = Math.floor((t%(1000*60))/1000);
+    timerEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+  setInterval(updateTimer, 1000);
+  updateTimer();
+</script>
+</body>
+</html>
